@@ -1,2 +1,0 @@
-# gridfs-code
-
