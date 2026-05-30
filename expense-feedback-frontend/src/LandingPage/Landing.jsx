@@ -41,11 +41,11 @@ const Landing = () => {
               <p className="hello-message">Hey, <span>{user.firstName}</span></p>
             )}
             <h1 className="heading text-gradient">
-              Elevate Expense Insights,<br />
-              Empower Your Reports.
+              Precision Expense Auditing.<br />
+              Intelligent Compliance.
             </h1>
             <p className="sub-content">
-              Effortlessly streamline expense reporting with AI-driven compliance checks and RAG insights, empowering informed decision-making and optimizing financial management.
+              Instantly verify reimbursement claims against corporate policies. Leverage local Retrieval-Augmented Generation (RAG) to analyze receipts, flag discrepancies, and accelerate financial audits with absolute accuracy.
             </p>
             <div className="button-container-start">
               <button className="premium-btn get-started-btn" onClick={() => navigate('/portal')}>
