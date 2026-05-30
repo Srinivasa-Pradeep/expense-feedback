@@ -1,10 +1,12 @@
 # Reimburse Feedback
 
+**Live Production URL:** [https://expense-feedback-frontend.vercel.app](https://expense-feedback-frontend.vercel.app)
+
 An intelligent, AI-driven expense compliance and reimbursement auditing application. The system features a modern, premium glassmorphic React frontend, a Node.js file storage backend, and a Python Flask microservice utilizing Retrieval-Augmented Generation (RAG) with local LLMs to instantly verify expense reports against corporate policies.
 
 ---
 
-## 🚀 Key Features
+## Key Features
 
 * **Premium UI Overhaul**: Designed with a sleek, minimalist "Black & Silver" theme supporting both **Light Mode** and **Dark Mode** with a floating glass header navigation toggle.
 * **Modern Glassy Calendar**: Custom-built date selector on the expense form, featuring drop-down select widgets for fast month and year navigation.
@@ -15,7 +17,7 @@ An intelligent, AI-driven expense compliance and reimbursement auditing applicat
 
 ---
 
-## 🏗️ System Architecture & Ports
+## System Architecture & Ports
 
 The application runs a complete local stack consisting of five services:
 
@@ -29,7 +31,7 @@ The application runs a complete local stack consisting of five services:
 
 ---
 
-## 🛠️ Step-by-Step Installation
+## Step-by-Step Installation
 
 ### Prerequisites
 * **Node.js** (v18+)
@@ -85,7 +87,7 @@ The application runs a complete local stack consisting of five services:
 
 ---
 
-## 🚦 How to Run the Application
+## How to Run the Application
 
 You will need to start the services in separate terminal windows (ensure MongoDB and Ollama are active):
 
@@ -110,7 +112,7 @@ Open your browser and navigate to **[http://localhost:5173](http://localhost:517
 
 ---
 
-## ☁️ Deployment
+## Deployment
 
 * **Frontend (Vercel)**:
   Deploy the React application to Vercel by importing the `expense-feedback-frontend` directory. Ensure you select Vite as the build preset.
