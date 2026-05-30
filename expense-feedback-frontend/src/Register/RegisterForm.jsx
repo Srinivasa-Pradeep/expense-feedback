@@ -4,7 +4,7 @@ import { TbShieldLockFilled } from "react-icons/tb";
 import { useTheme } from '../service/ThemeContext';
 import { BsSunFill, BsMoonStarsFill } from 'react-icons/bs';
 import { Link, useNavigate } from "react-router-dom";
-import logo from '../assets/CostoSight.png';
+
 import { IoMdCloseCircle } from "react-icons/io";
 import './RegisterForm.css';
 
@@ -84,7 +84,9 @@ const RegisterForm = () => {
 
       <div className="register-wrapper glass-panel">
         <form className="entryform" onSubmit={submit}>
-          <img src={logo} alt="Logo" className="register-logo" />
+          <div className="register-brand-logo">
+            <span className="brand-text">Reimburse</span><span className="brand-accent"> Feedback</span>
+          </div>
           <h2 className="register-title">Create Account</h2>
           
           <div className="input-box">

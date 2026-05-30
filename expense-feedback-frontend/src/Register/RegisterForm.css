@@ -51,12 +51,30 @@
   width: 100%;
 }
 
-.register-logo {
-  height: 44px;
-  width: auto;
+.register-brand-logo {
+  font-family: 'Outfit', 'Poppins', sans-serif;
+  font-size: 1.6rem;
+  font-weight: 800;
+  letter-spacing: -0.5px;
   margin-bottom: 24px;
-  filter: drop-shadow(0 2px 8px var(--shadow-color));
+  line-height: 1;
+  user-select: none;
 }
+
+.register-brand-logo .brand-text {
+  background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent-silver-dark) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.register-brand-logo .brand-accent {
+  background: linear-gradient(135deg, var(--accent-silver-dark) 0%, var(--text-secondary) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
 
 .register-title {
   font-family: 'Outfit', 'Poppins', sans-serif;
