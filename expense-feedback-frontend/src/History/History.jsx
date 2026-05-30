@@ -14,7 +14,7 @@ const History = () => {
           const email = userObject.email;
           console.log(email);
       
-          axios.get(`http://127.0.0.1:5000/user-expenses/${email}`)
+          axios.get(`http://127.0.0.1:5001/user-expenses/${email}`)
             .then(response => {
                 setFeedbacks(response.data);
                 setLoading(false);

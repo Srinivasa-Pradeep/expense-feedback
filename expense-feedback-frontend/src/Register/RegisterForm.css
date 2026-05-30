@@ -1,73 +1,208 @@
-.overall-register{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
+.overall-register-container {
+  position: relative;
+  min-height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  overflow: hidden;
 }
 
-.txt{
-    z-index: 1000;
+/* Floating theme switch on login/register */
+.theme-toggle-floating {
+  position: absolute;
+  top: 30px;
+  right: 40px;
+  z-index: 100;
+  background: var(--bg-card) !important;
+  border: 1px solid var(--border-color) !important;
+  color: var(--text-secondary) !important;
+  width: 40px !important;
+  height: 40px !important;
+  padding: 0 !important;
+  border-radius: 50% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer !important;
+  box-shadow: 0 4px 12px var(--shadow-color) !important;
+  transition: all 0.2s ease !important;
 }
 
-/* Remaining styles will be attained from LoginForm.css */
-
-.register-link p a{
-    color: white;
-    text-decoration: none;
-    font-weight: 600;
+.theme-toggle-floating:hover {
+  color: var(--text-primary) !important;
+  border-color: var(--accent-silver-dark) !important;
+  transform: scale(1.05);
 }
 
-.register-link p a:hover{
-    text-decoration: underline;
-    cursor: pointer;
+.register-wrapper {
+  width: 100%;
+  max-width: 480px;
+  border-radius: 20px;
+  padding: 40px;
+  transition: all 0.3s ease;
 }
 
-.success-popup {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: row;
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    background-color: #1cab47;
-    color: white;
-    padding: 13px;
-    border-radius: 15px;
-    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
-    opacity: 0;
-    transition: opacity 0.5s ease-out;
+.entryform {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
 }
 
-.success-popup.fade-in{
-    opacity:1;
+.register-logo {
+  height: 44px;
+  width: auto;
+  margin-bottom: 24px;
+  filter: drop-shadow(0 2px 8px var(--shadow-color));
 }
 
-.success-popup p{
-    margin-right: 5px;
+.register-title {
+  font-family: 'Outfit', 'Poppins', sans-serif;
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 28px;
+  color: var(--text-primary);
+  letter-spacing: -0.5px;
 }
 
+.entryform .input-box {
+  position: relative;
+  width: 100%;
+  height: 52px;
+  margin-bottom: 20px;
+}
+
+.input-row {
+  display: flex;
+  gap: 16px;
+  width: 100%;
+}
+
+.input-box.half {
+  flex: 1;
+}
+
+.input-box input {
+  width: 100%;
+  height: 100%;
+  background: var(--bg-secondary);
+  outline: none;
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  color: var(--text-primary);
+  padding: 0 20px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
+}
+
+.entryform .input-box:not(.half) input {
+  padding-right: 48px;
+}
+
+.input-box input:focus {
+  border-color: var(--accent-silver-dark);
+  box-shadow: 0 0 0 2px var(--border-glow);
+  background: var(--bg-primary);
+}
+
+.input-box input::placeholder {
+  color: var(--text-secondary);
+  opacity: 0.7;
+}
+
+.input-box .FaIcon {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  pointer-events: none;
+}
+
+.register-btn {
+  width: 100%;
+  height: 48px;
+  margin-top: 10px;
+  font-size: 1rem !important;
+  border-radius: 10px !important;
+  background-color: var(--accent-color) !important;
+  color: var(--accent-text) !important;
+  border: 1px solid var(--accent-color) !important;
+}
+
+.register-link {
+  font-size: 0.9rem;
+  text-align: center;
+  margin-top: 24px;
+  color: var(--text-secondary);
+}
+
+.register-link p a {
+  color: var(--text-primary);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.register-link p a:hover {
+  text-decoration: underline;
+}
+
+/* Success & Error Popups */
+.success-popup,
 .error-popup {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: row;
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    background-color: #d31313;
-    color: white;
-    padding: 13px;
-    border-radius: 15px;
-    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
-    opacity: 0;
-    transition: opacity 0.5s ease-out;
+  position: fixed;
+  top: 24px;
+  left: 50%;
+  transform: translate(-50%, -20px);
+  padding: 16px 28px;
+  border-radius: 12px;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-.error-popup.fade-in{
-    opacity:1;
+.success-popup.show,
+.error-popup.show {
+  opacity: 1;
+  transform: translate(-50%, 0);
+  pointer-events: auto;
 }
 
-.error-popup p{
-    margin-right: 5px;
+.success-popup p {
+  color: #10b981;
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+.error-popup p {
+  color: #ef4444;
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+.popup-close {
+  font-size: 1.3rem;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+
+.success-popup .popup-close {
+  color: #10b981;
+}
+
+.error-popup .popup-close {
+  color: #ef4444;
+}
+
+.popup-close:hover {
+  opacity: 1;
 }

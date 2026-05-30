@@ -12,7 +12,7 @@ const Portal = () => {
     formData.append('file', selectedFile);
 
     try {
-      const response = await fetch('http://localhost:5000/process-pdf', {
+      const response = await fetch('http://localhost:5001/process-pdf', {
         method: 'POST',
         body: formData
       });

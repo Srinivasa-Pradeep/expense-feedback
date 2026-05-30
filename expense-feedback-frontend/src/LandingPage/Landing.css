@@ -1,136 +1,183 @@
-.main2 {
-  background-image: url('../assets/bg.jpg');
-  background-size: cover;
-  background-position: center;
-  height: 100vh;
+.main2-container {
+  position: relative;
+  min-height: 100vh;
+  width: 100vw;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  color: white;
-  text-align: center;
-  opacity: 0.9;
-  /* Apply blur effect */
+  overflow: hidden;
 }
 
-
-.inside {
-  border-radius: 60px;
-  padding: 40px;
-  color: white;
-  text-align: center;
-  width: 60vw;
-  margin-top: 80px;
-  background: transparent;
-  position: relative;
-}
-
-.inside::before {
-  content: "";
+.mesh-gradient {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  border-radius: inherit;
-  backdrop-filter: blur(10px);
-  z-index: -1;
+  z-index: -2;
+  background: radial-gradient(circle at 10% 20%, rgba(203, 213, 225, 0.6) 0%, transparent 60%),
+              radial-gradient(circle at 90% 80%, rgba(241, 245, 249, 0.8) 0%, transparent 60%),
+              #f8fafc;
 }
 
-
-.logo-container {
-  position: absolute;
-  top: 15px;
-  left: 20px;
+.dark .mesh-gradient {
+  background: radial-gradient(circle at 10% 20%, rgba(38, 38, 38, 0.7) 0%, transparent 60%),
+              radial-gradient(circle at 90% 80%, rgba(13, 13, 13, 0.7) 0%, transparent 60%),
+              #000000;
 }
 
 .button-container {
   display: flex;
   align-items: center;
-  justify-content: flex-end;
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  margin-right: 10px;
-  margin-top: 20px;
+  gap: 16px;
 }
 
-.button-container button a{
-  padding: 8px 16px;
-  font-size: 1em;
-  border: none;
+.theme-toggle-btn {
+  background: transparent !important;
+  border: 1px solid var(--border-color) !important;
+  color: var(--text-secondary) !important;
+  width: 36px !important;
+  height: 36px !important;
+  padding: 0 !important;
+  border-radius: 50% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+}
+
+.theme-toggle-btn:hover {
+  color: var(--text-primary) !important;
+  border-color: var(--accent-silver-dark) !important;
+  background-color: var(--bg-secondary) !important;
+}
+
+.theme-icon {
+  font-size: 1.1rem;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.theme-toggle-btn:hover .theme-icon.sun {
+  transform: rotate(45deg);
+}
+
+.theme-toggle-btn:hover .theme-icon.moon {
+  transform: rotate(-15deg);
+}
+
+.landing-header {
+  height: 80px;
+  padding: 0 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 10;
+}
+
+.landing-logo-text {
+  font-family: 'Outfit', 'Poppins', sans-serif;
+  font-size: 1.45rem;
+  font-weight: 800;
+  letter-spacing: -0.5px;
   cursor: pointer;
+  transition: transform 0.2s ease;
 }
 
-.policies-button {
-  color: white;
-  background-color: transparent;
-  text-decoration: underline;
-  font-size: medium;
+.landing-logo-text:hover {
+  transform: scale(1.02);
 }
 
-.sign-in-button {
-  color: white; /* White text color */
-  background-color: transparent; /* Transparent background */
-  text-decoration: underline; /* Underline style to mimic a link */
+.landing-nav-link {
+  color: var(--text-secondary);
+  font-weight: 500;
+  font-size: 0.95rem;
+  margin-right: 24px;
+  transition: color 0.2s ease;
+}
+
+.landing-nav-link:hover {
+  color: var(--text-primary);
+}
+
+.outline-btn {
+  background-color: transparent !important;
+  color: var(--text-primary) !important;
+  border: 1px solid var(--border-color) !important;
+  box-shadow: none !important;
+}
+
+.outline-btn:hover {
+  background-color: var(--border-color) !important;
+}
+
+/* Main content */
+.landing-main {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  z-index: 5;
+}
+
+.inside {
+  width: 100%;
+  max-width: 800px;
+  border-radius: 24px;
+  padding: 60px 40px;
+  text-align: center;
+  transition: all 0.3s ease;
 }
 
 .info-container {
-  background: transparent;
-  border-radius: 60px;
-  padding: 20px;
-  padding-bottom: 30px;
-  border-radius: 30px;
-  margin-top: 50px;
-  text-align: center; /* Align content to the center */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.hello-message {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.hello-message span {
+  color: var(--text-primary);
+  font-weight: 700;
 }
 
 .heading {
-  color: white;
-  font-size: 2em;
-  margin-bottom: 10px;
-  font-family: "Josefin Sans", sans-serif;
-  font-weight: 900;
-  font-style: normal;
+  font-family: 'Outfit', 'Poppins', sans-serif;
+  font-size: 3rem;
+  line-height: 1.25;
+  font-weight: 800;
+  letter-spacing: -1px;
 }
 
 .sub-content {
-  color: #f0f0f0;
-  font-size: 1.2em;
-  margin-left: 80px;
-  margin-right: 80px;
-}
-
-.hello-message{
-  font-size: 30px;
-  font-family: "Josefin Sans", sans-serif;
-  margin-bottom: 7px;
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+  line-height: 1.6;
+  max-width: 600px;
+  margin: 0 auto;
 }
 
 .button-container-start {
-  text-align: center; /* Align the button in the center */
-  margin-top: 20px; /* Add some space between the container and the button */
+  margin-top: 15px;
 }
 
-.get-started-button {
-  background-color: #b816b0; /* Blue background color */
-  color: white; /* White text color */
-  padding: 10px 20px; /* Add padding */
-  border: none; /* Remove border */
-  border-radius: 5px; /* Add some border-radius */
-  font-size: 1em; /* Adjust font size */
-  cursor: pointer; /* Change cursor on hover */
-  margin-top: 40px;
+.get-started-btn {
+  font-size: 1.05rem !important;
+  padding: 12px 36px !important;
+  border-radius: 30px !important;
+  background-color: var(--accent-color) !important;
+  color: var(--accent-text) !important;
+  border: 1px solid var(--accent-color) !important;
 }
 
-.get-started-button:hover {
-  background-color: #9c0331; /* Darker blue color on hover */
+.get-started-btn:hover {
+  box-shadow: 0 8px 24px 0 var(--border-glow) !important;
 }
-
-
-
-
-
-
-
-

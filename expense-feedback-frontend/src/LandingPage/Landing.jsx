@@ -1,40 +1,62 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useTheme } from '../service/ThemeContext';
+import { BsSunFill, BsMoonStarsFill } from 'react-icons/bs';
 import './Landing.css';
-import { TbShieldLockFilled } from "react-icons/tb";
-import { FaUserAstronaut } from "react-icons/fa6";
-import logo from '../assets/CostoSight.png';
 
 const Landing = () => {
-
+  const navigate = useNavigate();
+  const { theme, toggleTheme } = useTheme();
   const isAuthenticated = JSON.parse(localStorage.getItem("isAuthenticated"));
-  const user=JSON.parse(localStorage.getItem("user"));
+  const user = JSON.parse(localStorage.getItem("user"));
 
-    return (
-        <div className="main2">
-            <div className="logo-container">
-                <img src={logo} alt="Logo" className="logo" />
-            </div>
-            <div className="button-container">
-                <button className="policies-button"><a href="/policies" style={{color: 'white'}}>Policies</a></button>
-                {!isAuthenticated?(<button className="sign-in-button"><a href="/login" style={{color: 'white'}}>Sign in</a></button>):<button className="sign-in-button"><a href="/portal" style={{color: 'white'}}>Feedback Generator</a></button>}
-            </div>
+  return (
+    <div className="main2-container">
+      {/* Background Mesh Gradients */}
+      <div className="mesh-gradient"></div>
+      
+      <header className="landing-header">
+        <div className="logo-container">
+          <a href="/home" className="landing-logo-text text-gradient">
+            Reimburse Feedback
+          </a>
+        </div>
+        <div className="button-container">
+          <a href="/policies" className="landing-nav-link">Policies</a>
+          <button className="theme-toggle-btn" onClick={toggleTheme} aria-label="Toggle Theme">
+            {theme === 'dark' ? <BsSunFill className="theme-icon sun" /> : <BsMoonStarsFill className="theme-icon moon" />}
+          </button>
+          {!isAuthenticated ? (
+            <button className="premium-btn outline-btn" onClick={() => navigate('/login')}>Sign in</button>
+          ) : (
+            <button className="premium-btn outline-btn" onClick={() => navigate('/portal')}>Feedback Generator</button>
+          )}
+        </div>
+      </header>
 
-          <div className="inside">
-            <div className="info-container">
-                {user&& user.firstName && (
-                <p className="hello-message">Hey, {user.firstName}</p>
-                )}
-                <h2 className="heading">"Elevate Expense Insights:
-                                            Empower Your Reports!"</h2><br></br>
-                <p className="sub-content">Effortlessly streamline expense reporting with AI-driven insights, empowering informed decision-making and optimizing financial management.</p>
-                <div class="button-container-start">
-              <button class="get-started-button"><a href="/portal" style={{color: 'white'}}>Get Started!</a></button>
+      <main className="landing-main">
+        <div className="inside glass-panel">
+          <div className="info-container">
+            {user && user.firstName && (
+              <p className="hello-message">Hey, <span>{user.firstName}</span></p>
+            )}
+            <h1 className="heading text-gradient">
+              Elevate Expense Insights,<br />
+              Empower Your Reports.
+            </h1>
+            <p className="sub-content">
+              Effortlessly streamline expense reporting with AI-driven compliance checks and RAG insights, empowering informed decision-making and optimizing financial management.
+            </p>
+            <div className="button-container-start">
+              <button className="premium-btn get-started-btn" onClick={() => navigate('/portal')}>
+                Get Started
+              </button>
             </div>
           </div>
         </div>
-      </div>
-    );
+      </main>
+    </div>
+  );
 };
 
 export default Landing;

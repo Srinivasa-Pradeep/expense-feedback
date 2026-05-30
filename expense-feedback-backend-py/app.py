@@ -26,8 +26,6 @@ def query_rag(prompt):
     for chunk in stream:
         yield f"{chunk['message']['content']}"
 
-global result
-
 @app.route('/submit-expense', methods=['POST','GET'])
 def submit_expense():
     expense_data = request.json
@@ -42,10 +40,8 @@ def submit_expense():
     tax_posted_amount = expense_data['taxAndPostedAmount']
     personal_expense = expense_data['personalExpense']
     comment = expense_data['comment']
-    name=expense_data['name']
-    email=expense_data['email']
-
-    result='Hii'
+    name = expense_data['name']
+    email = expense_data['email']
 
     formatted_expense_store = {
         "transactionDate": transaction_date,
@@ -58,7 +54,7 @@ def submit_expense():
         "taxAndPostedAmount": tax_posted_amount,
         "personalExpense": personal_expense,
         "comment": comment,
-        "response_from_query_rag": result
+        "response_from_query_rag": ""
     }
 
     formatted_expense = f"Transaction date: {transaction_date},\n" \
@@ -76,26 +72,23 @@ def submit_expense():
     print(formatted_expense)
     
     def generate():
-        nonlocal result
         prompt = promptcreation(formatted_expense)
+        full_result = ""
         for chunk in query_rag(prompt):
-            result=result+chunk
+            full_result += chunk
             yield chunk
 
-    response = Response(generate(), content_type='text/plain')
+        # Once the generator finishes rendering all chunks, update MongoDB
+        formatted_expense_store['response_from_query_rag'] = full_result
+        print("Saving generated feedback to DB:", full_result)
 
-    # Update the formatted_expense_store with the complete result after streaming
-    formatted_expense_store['response_from_query_rag'] = result
-    print(result)
+        user = users_collection.find_one({"email": email})
+        if user:
+            users_collection.update_one({"email": email}, {"$push": {"details": formatted_expense_store}})
+        else:
+            users_collection.insert_one({"email": email, "details": [formatted_expense_store]})
 
-    # Update or insert the user details in the database
-    user = users_collection.find_one({"email": email})
-    if user:
-        users_collection.update_one({"email": email}, {"$push": {"details": formatted_expense_store}})
-    else:
-        users_collection.insert_one({"email": email, "details": [formatted_expense_store]})
-
-    return response
+    return Response(generate(), content_type='text/plain')
 
 @app.route('/user-expenses/<email>', methods=['GET'])
 def get_user_expenses(email):
@@ -114,4 +107,5 @@ def get_user_expenses(email):
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, port=5001)
+

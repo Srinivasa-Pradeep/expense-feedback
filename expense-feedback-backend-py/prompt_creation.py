@@ -15,6 +15,7 @@ Provide a detailed response based on the latest information available. Pay close
 {context}
 
 Ensure your response follows a proper format for seamless integration into the frontend.
+Always sign off the feedback with "Regards, Reimbursement Team" at the very end. Do not use placeholders like "[Your Name]" or generic sign-offs.
 
 Data and Query:
 {query}
@@ -48,6 +49,7 @@ def promptcreation(formatted_expense):
     9. Reimbursement depends on alignment between purchased items and expense purpose.
     10. Transaction date/year should not deviate >2 months from the current date.
     11. There will be no itemizations in the expense report you must rely on receipt data only.
+    12. Always sign off the response with "Regards, Reimbursement Team" at the end. Never use "[Your Name]" or other placeholder name signature.
 
     Answer the following questions strictly:
     1. Is this expense reimbursable? Yes/No. Justification?
