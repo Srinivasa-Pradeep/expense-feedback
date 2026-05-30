@@ -114,5 +114,8 @@ Open your browser and navigate to **[http://localhost:5173](http://localhost:517
 
 * **Frontend (Vercel)**:
   Deploy the React application to Vercel by importing the `expense-feedback-frontend` directory. Ensure you select Vite as the build preset.
+  
+  *Note: A `vercel.json` configuration is defined in the frontend directory to rewrite all path inputs to `index.html`. This ensures subpage links (like `/portal` or `/history`) route client-side natively via `react-router-dom` on browser refresh.*
+
 * **Database (MongoDB)**:
   Configure a MongoDB Atlas cluster and swap the local connection URI in your production environment variables.
